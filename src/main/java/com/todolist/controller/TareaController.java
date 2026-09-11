@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 public class TareaController {
+    private static final String USUARIO_DEMO = "Invitado";
+
     private final TareaRepository tareaRepository;
 
     public TareaController(TareaRepository tareaRepository) {
@@ -25,7 +27,8 @@ public class TareaController {
         Map<String, Object> model = new HashMap<>();
         model.put("tareas", tareas);
         model.put("nombre", nombre == null ? "" : nombre);
-        ctx.render("/templates/tareas.hbs", model);
+        model.put("usuarioNombre", USUARIO_DEMO);
+        ctx.render("tareas", model);
     }
 
     public void detalle(Context ctx) {
@@ -37,7 +40,10 @@ public class TareaController {
             return;
         }
 
-        ctx.render("/templates/tarea-detalle.hbs", Map.of("tarea", tarea));
+        Map<String, Object> model = new HashMap<>();
+        model.put("tarea", tarea);
+        model.put("usuarioNombre", USUARIO_DEMO);
+        ctx.render("tarea-detalle", model);
     }
 
     public void crear(Context ctx) {

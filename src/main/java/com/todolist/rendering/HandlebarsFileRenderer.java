@@ -14,8 +14,8 @@ public class HandlebarsFileRenderer implements FileRenderer {
 
     public HandlebarsFileRenderer() {
         ClassPathTemplateLoader loader = new ClassPathTemplateLoader();
-        loader.setPrefix("");
-        loader.setSuffix("");
+        loader.setPrefix("/templates");
+        loader.setSuffix(".hbs");
         this.handlebars = new Handlebars(loader);
     }
 

@@ -7,8 +7,70 @@ body {
 
 .container {
     max-width: 640px;
-    margin: 64px auto;
+    margin: 0 auto;
     padding: 0 24px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    border-bottom: 1px solid #cccccc;
+    margin-bottom: 40px;
+}
+
+.navbar-marca {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #1a1a1a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navbar-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: 1px solid #1a1a1a;
+}
+
+.navbar-nombre {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+.navbar-usuario {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.navbar-usuario-icono {
+    font-size: 16px;
+}
+
+.footer {
+    margin-top: 48px;
+    padding: 24px 0 40px;
+    border-top: 1px solid #cccccc;
+    color: #777777;
+    font-size: 12px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.footer-links a {
+    color: #777777;
 }
 
 h1 {

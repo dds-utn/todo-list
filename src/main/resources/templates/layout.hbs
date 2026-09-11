@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{#block "titulo"}}Tareas{{/block}}</title>
+    <link rel="stylesheet" href="/css/estilo-minimal.css">
+</head>
+<body>
+<div class="container">
+    <nav class="navbar">
+        <a class="navbar-marca" href="/tareas">
+            <span class="navbar-logo" aria-hidden="true">&#10003;</span>
+            <span class="navbar-nombre">TareasApp</span>
+        </a>
+        <div class="navbar-usuario">
+            <span class="navbar-usuario-nombre">{{usuarioNombre}}</span>
+            <span class="navbar-usuario-icono" aria-hidden="true">&#128100;</span>
+        </div>
+    </nav>
+
+    {{#block "contenido"}}{{/block}}
+
+    <footer class="footer">
+        <p>&copy; 2026 TareasApp. Todos los derechos reservados.</p>
+        <nav class="footer-links">
+            <a href="#">Términos y condiciones</a>
+            <a href="#">Privacidad</a>
+        </nav>
+    </footer>
+</div>
+</body>
+</html>

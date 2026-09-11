@@ -9,7 +9,75 @@ body {
 .container {
     max-width: 680px;
     margin: 0 auto;
-    padding: 56px 24px;
+    padding: 0 24px 56px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    margin-bottom: 40px;
+    font-family: Arial, sans-serif;
+}
+
+.navbar-marca {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #b05c8b;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navbar-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background: #f3e0ea;
+}
+
+.navbar-nombre {
+    font-size: 14px;
+}
+
+.navbar-usuario {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #4a3b4a;
+}
+
+.navbar-usuario-icono {
+    font-size: 18px;
+}
+
+.footer {
+    margin-top: 48px;
+    padding: 24px 0;
+    color: #a884a8;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.footer-links a {
+    color: #a884a8;
+}
+
+.footer-links a:hover {
+    color: #b05c8b;
 }
 
 h1 {
