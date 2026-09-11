@@ -14,11 +14,12 @@ public class TareaController {
     }
 
     public void listar(Context ctx) {
-        ctx.json(tareaRepository.listarTodas());
-    }
-
-    public void vista(Context ctx) {
-        ctx.html(renderHtml(tareaRepository.listarTodas()));
+        String accept = ctx.header("Accept");
+        if (accept != null && accept.contains("text/html")) {
+            ctx.html(renderHtml(tareaRepository.listarTodas()));
+        } else {
+            ctx.json(tareaRepository.listarTodas());
+        }
     }
 
     private String renderHtml(List<Tarea> tareas) {

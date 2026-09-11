@@ -11,6 +11,5 @@ public class Routes {
         app.get("/healthz", ctx -> ctx.status(HttpStatus.OK).json(Map.of("status", "UP")));
 
         app.get("/tareas", tareaController::listar);
-        app.get("/tareas/vista", tareaController::vista);
     }
 }
