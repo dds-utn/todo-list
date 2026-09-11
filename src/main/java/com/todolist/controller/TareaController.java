@@ -2,7 +2,7 @@ package com.todolist.controller;
 
 import com.todolist.model.Tarea;
 import com.todolist.repository.TareaRepository;
-import io.javalin.Javalin;
+import io.javalin.http.Context;
 
 import java.util.List;
 
@@ -13,9 +13,12 @@ public class TareaController {
         this.tareaRepository = tareaRepository;
     }
 
-    public void register(Javalin app) {
-        app.get("/tareas", ctx -> ctx.json(tareaRepository.listarTodas()));
-        app.get("/tareas/vista", ctx -> ctx.html(renderHtml(tareaRepository.listarTodas())));
+    public void listar(Context ctx) {
+        ctx.json(tareaRepository.listarTodas());
+    }
+
+    public void vista(Context ctx) {
+        ctx.html(renderHtml(tareaRepository.listarTodas()));
     }
 
     private String renderHtml(List<Tarea> tareas) {
