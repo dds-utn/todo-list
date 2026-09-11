@@ -6,60 +6,76 @@
 </header>
 
 <main>
-    <form class="busqueda-form" method="get" action="/tareas">
-        <input type="text" name="nombre" placeholder="Buscar por nombre..." value="{{nombre}}">
-        <button type="submit">Buscar</button>
+    <form class="busqueda-form" method="get" action="/tareas" role="search">
+        <label class="visually-hidden" for="nombre">Buscar por nombre</label>
+        <input id="nombre" type="text" name="nombre" placeholder="Buscar por nombre..." value="{{nombre}}">
+        <button type="submit" class="btn btn-secondary">Buscar</button>
     </form>
 
-    <form class="nueva-tarea-form" method="post" action="/tareas">
-        <input type="text" name="descripcion" placeholder="Nueva tarea..." required>
-        <input type="text" name="detalle" placeholder="Detalle (opcional)">
-        <select name="prioridad">
+    <form class="nueva-tarea-form" method="post" action="/tareas" aria-label="Agregar tarea">
+        <label class="visually-hidden" for="descripcion">Descripción de la nueva tarea</label>
+        <input id="descripcion" type="text" name="descripcion" placeholder="Nueva tarea..." required>
+
+        <label class="visually-hidden" for="detalle">Detalle (opcional)</label>
+        <input id="detalle" type="text" name="detalle" placeholder="Detalle (opcional)">
+
+        <label class="visually-hidden" for="prioridad">Prioridad</label>
+        <select id="prioridad" name="prioridad">
             <option value="ALTA">Alta</option>
             <option value="MEDIA" selected>Media</option>
             <option value="BAJA">Baja</option>
         </select>
-        <button type="submit">Agregar</button>
+
+        <button type="submit" class="btn btn-primary">+ Agregar tarea</button>
     </form>
 
-    <table class="tareas-table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Descripción</th>
-            <th>Prioridad</th>
-            <th>Completada</th>
-            <th>Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        {{#each tareas}}
-        <tr>
-            <td>{{this.id}}</td>
-            <td><a href="/tareas/{{this.id}}">{{this.descripcion}}</a></td>
-            <td><span class="tag {{this.prioridadCssClass}}">{{this.prioridad}}</span></td>
-            <td>
-                {{#if this.completada}}
-                <span class="badge badge-done">Sí</span>
-                {{else}}
-                <span class="badge badge-pending">No</span>
-                {{/if}}
-            </td>
-            <td class="acciones">
-                <a class="link-detalle" href="/tareas/{{this.id}}">Ver</a>
-                {{#unless this.completada}}
-                <form method="post" action="/tareas/{{this.id}}/completar">
-                    <button type="submit">Completar</button>
-                </form>
-                {{/unless}}
-                <form method="post" action="/tareas/{{this.id}}/eliminar">
-                    <button type="submit" class="btn-borrar">Borrar</button>
-                </form>
-            </td>
-        </tr>
-        {{/each}}
-        </tbody>
-    </table>
+    {{#unless tareas}}
+    <p class="empty-state">No hay tareas para mostrar.</p>
+    {{/unless}}
+
+    {{#if tareas}}
+    <div class="table-scroll">
+        <table class="tareas-table">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Prioridad</th>
+                <th scope="col">Completada</th>
+                <th scope="col">Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each tareas}}
+            <tr>
+                <td>{{this.id}}</td>
+                <td>
+                    <a class="descripcion-texto" href="/tareas/{{this.id}}" title="{{this.descripcion}}" aria-label="Ver detalle de {{this.descripcion}}">{{this.descripcion}}</a>
+                </td>
+                <td><span class="tag {{this.prioridadCssClass}}">{{this.prioridad}}</span></td>
+                <td>
+                    {{#if this.completada}}
+                    <span class="badge badge-done">Sí</span>
+                    {{else}}
+                    <span class="badge badge-pending">No</span>
+                    {{/if}}
+                </td>
+                <td class="acciones">
+                    {{#unless this.completada}}
+                    <form method="post" action="/tareas/{{this.id}}/completar">
+                        <button type="submit" class="btn btn-success btn-sm" aria-label="Completar tarea: {{this.descripcion}}">Completar</button>
+                    </form>
+                    {{/unless}}
+                    <form method="post" action="/tareas/{{this.id}}/eliminar" onsubmit="return confirm('¿Seguro que querés borrar esta tarea?')">
+                        <button type="submit" class="btn btn-danger btn-sm" aria-label="Borrar tarea: {{this.descripcion}}">Borrar</button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+    {{/if}}
 </main>
 {{/partial}}
 

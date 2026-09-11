@@ -6,7 +6,7 @@ body {
 }
 
 .container {
-    max-width: 640px;
+    max-width: 760px;
     margin: 0 auto;
     padding: 0 24px;
 }
@@ -97,16 +97,6 @@ h1 {
     font-size: 14px;
 }
 
-.busqueda-form button {
-    padding: 8px 16px;
-    border: 1px solid #1a1a1a;
-    background: #1a1a1a;
-    color: #ffffff;
-    font-family: inherit;
-    font-size: 14px;
-    cursor: pointer;
-}
-
 .nueva-tarea-form {
     display: flex;
     gap: 8px;
@@ -130,18 +120,9 @@ h1 {
     flex: 3;
 }
 
-.nueva-tarea-form button {
-    padding: 8px 16px;
-    border: 1px solid #1a1a1a;
-    background: #1a1a1a;
-    color: #ffffff;
-    font-family: inherit;
-    font-size: 14px;
-    cursor: pointer;
-}
-
 .tareas-table {
-    width: 100%;
+    width: max-content;
+    min-width: 100%;
     border-collapse: collapse;
 }
 
@@ -206,37 +187,102 @@ h1 {
     display: flex;
     gap: 8px;
     align-items: center;
+    white-space: nowrap;
 }
 
 .acciones form {
     display: inline;
 }
 
-.acciones button {
-    padding: 4px 10px;
-    font-size: 12px;
+.acciones .btn {
+    flex-shrink: 0;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 18px;
+    min-height: 40px;
     border: 1px solid #1a1a1a;
     background: #ffffff;
     color: #1a1a1a;
-    cursor: pointer;
     font-family: inherit;
+    font-size: 14px;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: transform 120ms ease, background-color 120ms ease, color 120ms ease;
 }
 
-.btn-borrar {
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-sm {
+    padding: 5px 12px;
+    min-height: 32px;
+    font-size: 12px;
+}
+
+.btn-primary {
+    background: #1a1a1a;
+    color: #ffffff;
+}
+
+.btn-secondary {
+    background: #ffffff;
+    color: #1a1a1a;
+}
+
+.btn-success {
+    border-color: #1a7a4a;
+    color: #1a7a4a;
+}
+
+.btn-success:hover {
+    background: #1a7a4a;
+    color: #ffffff;
+}
+
+.btn-danger {
     border-color: #a11;
     color: #a11;
 }
 
-.link-detalle,
-.link-volver {
-    color: #1a1a1a;
+.btn-danger:hover {
+    background: #a11;
+    color: #ffffff;
+}
+
+.btn-ghost {
+    border-color: transparent;
+    background: transparent;
     text-decoration: underline;
+    padding-left: 0;
+    padding-right: 0;
+    min-height: auto;
 }
 
 .detalle-meta {
     display: flex;
     gap: 8px;
     margin: 16px 0 24px;
+}
+
+.detalle-acciones {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.detalle-acciones form {
+    display: inline;
 }
 
 .detalle-seccion {
@@ -273,4 +319,68 @@ h1 {
     margin-top: 16px;
     display: flex;
     gap: 8px;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.table-scroll {
+    overflow-x: auto;
+}
+
+.descripcion-texto {
+    display: inline-block;
+    max-width: 280px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: bottom;
+    color: #1a1a1a;
+}
+
+.empty-state {
+    color: #777777;
+    font-size: 14px;
+    padding: 24px 0;
+    text-align: center;
+    border: 1px dashed #cccccc;
+}
+
+button:disabled,
+input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 2px solid #1a1a1a;
+    outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+    .busqueda-form,
+    .nueva-tarea-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .acciones {
+        flex-wrap: wrap;
+    }
+
+    .descripcion-texto {
+        max-width: 160px;
+    }
 }
