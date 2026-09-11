@@ -51,7 +51,7 @@
                 <a class="link-detalle" href="/tareas/{{this.id}}">Ver</a>
                 {{#unless this.completada}}
                 <form method="post" action="/tareas/{{this.id}}/completar">
-                    <button type="submit">Aceptar</button>
+                    <button type="submit">Completar</button>
                 </form>
                 {{/unless}}
                 <form method="post" action="/tareas/{{this.id}}/eliminar">

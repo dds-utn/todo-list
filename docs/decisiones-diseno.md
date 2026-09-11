@@ -2,7 +2,7 @@
 
 ## Completar y eliminar como `POST`, no `PUT`/`DELETE`
 
-Las rutas para aceptar (`POST /tareas/{id}/completar`) y borrar
+Las rutas para completar (`POST /tareas/{id}/completar`) y borrar
 (`POST /tareas/{id}/eliminar`) una tarea usan `POST` con el verbo en el
 path, en vez de `PUT`/`PATCH` o `DELETE` sobre `/tareas/{id}`.
 
@@ -47,7 +47,7 @@ endpoint.
 
 ## `Tarea` sigue siendo inmutable
 
-Para "aceptar" una tarea, el repositorio no muta el objeto `Tarea`
+Para "completar" una tarea, el repositorio no muta el objeto `Tarea`
 existente: crea uno nuevo vía `Tarea#completar()` y reemplaza la
 posición en la lista (`InMemoryTareaRepository#marcarComoCompletada`).
 
