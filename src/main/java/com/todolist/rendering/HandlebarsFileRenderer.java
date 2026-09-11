@@ -6,6 +6,7 @@ import com.github.jknack.handlebars.io.ClassPathTemplateLoader;
 import io.javalin.http.Context;
 import io.javalin.rendering.FileRenderer;
 
+import java.io.IOException;
 import java.util.Map;
 
 public class HandlebarsFileRenderer implements FileRenderer {
@@ -19,8 +20,12 @@ public class HandlebarsFileRenderer implements FileRenderer {
     }
 
     @Override
-    public String render(String filePath, Map<String, ? extends Object> model, Context context) throws Exception {
-        Template template = handlebars.compile(filePath);
-        return template.apply(model);
+    public String render(String filePath, Map<String, ? extends Object> model, Context context) {
+        try {
+            Template template = handlebars.compile(filePath);
+            return template.apply(model);
+        } catch (IOException e) {
+            throw new RuntimeException("Error al renderizar el template " + filePath, e);
+        }
     }
 }
