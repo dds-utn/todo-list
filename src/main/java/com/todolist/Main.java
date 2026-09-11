@@ -6,12 +6,19 @@ import com.todolist.repository.TareaRepository;
 import com.todolist.rendering.HandlebarsFileRenderer;
 import com.todolist.routes.Routes;
 import io.javalin.Javalin;
+import io.javalin.http.staticfiles.Location;
 
 public class Main {
     public static void main(String[] args) {
         int port = Integer.parseInt(System.getenv().getOrDefault("PORT", "7000"));
 
-        Javalin app = Javalin.create(config -> config.fileRenderer(new HandlebarsFileRenderer()));
+        Javalin app = Javalin.create(config -> {
+            config.fileRenderer(new HandlebarsFileRenderer());
+            config.staticFiles.add(staticFiles -> {
+                staticFiles.directory = "/public";
+                staticFiles.location = Location.CLASSPATH;
+            });
+        });
 
         TareaRepository tareaRepository = new InMemoryTareaRepository();
         TareaController tareaController = new TareaController(tareaRepository);
