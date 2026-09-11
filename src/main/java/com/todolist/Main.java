@@ -1,5 +1,8 @@
 package com.todolist;
 
+import com.todolist.controller.TareaController;
+import com.todolist.repository.InMemoryTareaRepository;
+import com.todolist.repository.TareaRepository;
 import io.javalin.Javalin;
 import io.javalin.http.HttpStatus;
 
@@ -12,6 +15,9 @@ public class Main {
         Javalin app = Javalin.create();
 
         app.get("/healthz", ctx -> ctx.status(HttpStatus.OK).json(Map.of("status", "UP")));
+
+        TareaRepository tareaRepository = new InMemoryTareaRepository();
+        new TareaController(tareaRepository).register(app);
 
         app.start(port);
     }
