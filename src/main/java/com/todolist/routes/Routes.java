@@ -11,5 +11,9 @@ public class Routes {
         app.get("/healthz", ctx -> ctx.status(HttpStatus.OK).json(Map.of("status", "UP")));
 
         app.get("/tareas", tareaController::listar);
+        app.post("/tareas", tareaController::crear);
+        app.get("/tareas/{id}", tareaController::detalle);
+        app.post("/tareas/{id}/completar", tareaController::completar);
+        app.post("/tareas/{id}/eliminar", tareaController::eliminar);
     }
 }

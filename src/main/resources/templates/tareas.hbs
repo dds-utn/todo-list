@@ -12,25 +12,51 @@
         <input type="text" name="nombre" placeholder="Buscar por nombre..." value="{{nombre}}">
         <button type="submit">Buscar</button>
     </form>
+
+    <form class="nueva-tarea-form" method="post" action="/tareas">
+        <input type="text" name="descripcion" placeholder="Nueva tarea..." required>
+        <input type="text" name="detalle" placeholder="Detalle (opcional)">
+        <select name="prioridad">
+            <option value="ALTA">Alta</option>
+            <option value="MEDIA" selected>Media</option>
+            <option value="BAJA">Baja</option>
+        </select>
+        <button type="submit">Agregar</button>
+    </form>
+
     <table class="tareas-table">
         <thead>
         <tr>
             <th>ID</th>
             <th>Descripción</th>
+            <th>Prioridad</th>
             <th>Completada</th>
+            <th>Acciones</th>
         </tr>
         </thead>
         <tbody>
         {{#each tareas}}
         <tr>
             <td>{{this.id}}</td>
-            <td>{{this.descripcion}}</td>
+            <td><a href="/tareas/{{this.id}}">{{this.descripcion}}</a></td>
+            <td><span class="tag {{this.prioridadCssClass}}">{{this.prioridad}}</span></td>
             <td>
                 {{#if this.completada}}
                 <span class="badge badge-done">Sí</span>
                 {{else}}
                 <span class="badge badge-pending">No</span>
                 {{/if}}
+            </td>
+            <td class="acciones">
+                <a class="link-detalle" href="/tareas/{{this.id}}">Ver</a>
+                {{#unless this.completada}}
+                <form method="post" action="/tareas/{{this.id}}/completar">
+                    <button type="submit">Aceptar</button>
+                </form>
+                {{/unless}}
+                <form method="post" action="/tareas/{{this.id}}/eliminar">
+                    <button type="submit" class="btn-borrar">Borrar</button>
+                </form>
             </td>
         </tr>
         {{/each}}

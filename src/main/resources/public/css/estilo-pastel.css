@@ -46,6 +46,42 @@ h1 {
     cursor: pointer;
 }
 
+.nueva-tarea-form {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 32px;
+    font-family: Arial, sans-serif;
+    flex-wrap: wrap;
+}
+
+.nueva-tarea-form input,
+.nueva-tarea-form select {
+    padding: 12px 16px;
+    border: none;
+    border-radius: 999px;
+    box-shadow: 0 6px 16px rgba(176, 92, 139, 0.15);
+    font-size: 14px;
+}
+
+.nueva-tarea-form input[name="descripcion"] {
+    flex: 2;
+}
+
+.nueva-tarea-form input[name="detalle"] {
+    flex: 3;
+}
+
+.nueva-tarea-form button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 999px;
+    background: #b05c8b;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 .tareas-table {
     width: 100%;
     border-collapse: separate;
@@ -100,4 +136,116 @@ h1 {
 .badge-pending {
     background: #ffe1d6;
     color: #c2622f;
+}
+
+.tag {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.tag-prioridad-alta {
+    background: #ffd7d7;
+    color: #c23636;
+}
+
+.tag-prioridad-media {
+    background: #fff2c9;
+    color: #a3781a;
+}
+
+.tag-prioridad-baja {
+    background: #e0f0ff;
+    color: #3a7ab0;
+}
+
+.acciones {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+.acciones form {
+    display: inline;
+}
+
+.acciones button {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 999px;
+    background: #f3e0ea;
+    color: #b05c8b;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.btn-borrar {
+    background: #ffe1d6;
+    color: #c2622f;
+}
+
+.link-detalle,
+.link-volver {
+    color: #b05c8b;
+    font-family: Arial, sans-serif;
+    text-decoration: none;
+}
+
+.link-detalle:hover,
+.link-volver:hover {
+    text-decoration: underline;
+}
+
+.detalle-meta {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 16px 0 32px;
+}
+
+.detalle-seccion {
+    margin-bottom: 32px;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px 24px;
+    box-shadow: 0 6px 16px rgba(176, 92, 139, 0.15);
+}
+
+.detalle-seccion h2 {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #a884a8;
+    margin-top: 0;
+}
+
+.adjuntos-lista {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.adjunto img {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.sin-adjuntos {
+    color: #a884a8;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+.subir-adjunto-form {
+    margin-top: 16px;
+    display: flex;
+    gap: 8px;
+    font-family: Arial, sans-serif;
 }

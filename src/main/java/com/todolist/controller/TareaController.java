@@ -1,5 +1,6 @@
 package com.todolist.controller;
 
+import com.todolist.model.Prioridad;
 import com.todolist.model.Tarea;
 import com.todolist.repository.TareaRepository;
 import io.javalin.http.Context;
@@ -25,5 +26,41 @@ public class TareaController {
         model.put("tareas", tareas);
         model.put("nombre", nombre == null ? "" : nombre);
         ctx.render("/templates/tareas.hbs", model);
+    }
+
+    public void detalle(Context ctx) {
+        long id = Long.parseLong(ctx.pathParam("id"));
+        Tarea tarea = tareaRepository.buscarPorId(id).orElse(null);
+
+        if (tarea == null) {
+            ctx.status(404).result("Tarea no encontrada");
+            return;
+        }
+
+        ctx.render("/templates/tarea-detalle.hbs", Map.of("tarea", tarea));
+    }
+
+    public void crear(Context ctx) {
+        String descripcion = ctx.formParam("descripcion");
+        String detalle = ctx.formParam("detalle");
+        String prioridadParam = ctx.formParam("prioridad");
+        Prioridad prioridad = (prioridadParam == null || prioridadParam.isBlank())
+                ? Prioridad.MEDIA
+                : Prioridad.valueOf(prioridadParam);
+
+        tareaRepository.agregar(descripcion, detalle == null ? "" : detalle, prioridad);
+        ctx.redirect("/tareas");
+    }
+
+    public void completar(Context ctx) {
+        long id = Long.parseLong(ctx.pathParam("id"));
+        tareaRepository.marcarComoCompletada(id);
+        ctx.redirect("/tareas");
+    }
+
+    public void eliminar(Context ctx) {
+        long id = Long.parseLong(ctx.pathParam("id"));
+        tareaRepository.eliminar(id);
+        ctx.redirect("/tareas");
     }
 }
