@@ -21,6 +21,38 @@ h1 {
     margin-bottom: 32px;
 }
 
+.busqueda-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 28px;
+}
+
+.busqueda-form input {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #2a2f52;
+    background: #10152b;
+    color: #e6faff;
+    font-size: 14px;
+}
+
+.busqueda-form input::placeholder {
+    color: #6b7aa8;
+}
+
+.busqueda-form button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    background: #ff2ec4;
+    color: #0b0e1a;
+    font-weight: bold;
+    text-shadow: none;
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(255, 46, 196, 0.6);
+}
+
 .tareas-table {
     width: 100%;
     border-collapse: separate;

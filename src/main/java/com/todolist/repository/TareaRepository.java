@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface TareaRepository {
     List<Tarea> listarTodas();
+
+    List<Tarea> buscarPorDescripcion(String texto);
 }
