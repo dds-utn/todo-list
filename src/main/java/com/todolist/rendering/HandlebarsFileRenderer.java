@@ -19,7 +19,7 @@ public class HandlebarsFileRenderer implements FileRenderer {
     }
 
     @Override
-    public String render(String filePath, Map<String, Object> model, Context context) throws Exception {
+    public String render(String filePath, Map<String, ? extends Object> model, Context context) throws Exception {
         Template template = handlebars.compile(filePath);
         return template.apply(model);
     }
